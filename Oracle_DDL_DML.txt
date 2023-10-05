@@ -1,0 +1,21 @@
+CREAE TABLE "테이블이름"(
+ 행                 열
+ id        	NUMBER(5) PRIMARY KEY(고유값),
+ 이름     글자 VARCHAR2(50)
+ 나이     숫자 NUMBER(숫자값크기제한)
+ 이메일  글자 VARCHAR2(50)
+ 직업     글자 VARCHAR2(10)
+ 입사일  날짜 DATE
+ 연봉     숫자 NUMBER(전체자릿수,소수점이하자릿수)
+);
+
+
+INSERT INTO "user" (user_id, name, age, email, hire_date, salary)
+VALUES (1,'KH학생1', 35, 'kh@kh.com', TO_DATE('2023-10-05','YYYY-MM-DD'), 5000.00)
+ values값에 ""말고 ''를 써야한다
+
+INSERT INTO "user" (user_id, name, age, email, hire_date, salary) VALUES (2, 'Jane', 25, 'jane@kh.com',TO_DATE('2023-09-25','YYYY-MM-DD'),6000.25);
+명령구문은 하나만 가능 또는 INSERT구문 끝에 ;으로 구분(오류는 뜨지만 실행됨)
+
+
+SELECT * FROM "user" WHERE age>=30;
