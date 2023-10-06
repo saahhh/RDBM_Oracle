@@ -8,3 +8,20 @@ grant connect, resource, dba to manage;
 
 INSERT INTO USER_INFO (USER_ID, USER_NAME, USER_MAIL)
 VALUES (1, 'John','john@kh.com');
+
+
+
+sqlplus sys/oracle as sysdba (최고 권한으로 접속)
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+세션이 변경되었습니다.
+CREATE USER khaaa IDENTIFIED BY kh1234;
+사용자가 생성되었습니다.
+SQL> GRANT CREATE SESSION TO khaaa;
+세션에 권한이 부여되었습니다. (사용자가 데이터베이스에 접속할 수 있도록 허용)
+GRANT CREATE ANY TABLE TO khaaa;
+테이블에 권한이 부여되었습니다.
+
+SQL 오류: ORA-01950: 테이블스페이스 'USERS'에 대한 권한이 없습니다.
+
+grant connect, resource, dba to khaaa;
+권한이 부여되었습니다. (최고 관리자로 만든 것)
