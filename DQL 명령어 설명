@@ -82,5 +82,48 @@ JOIN 내 다양한 JOIN문 설명 작성
 --FULL JOIN
     양쪽 테이블의 모든 행을 반환
 
+--JOIN (=INNER JOIN) 일치하는 행만 반환
+--부서와 직원 테이블을 JOIN하여 각 직원의 부서 정보를 가져옴
+--EMPLOYEE e
+--SELECT EMPLOYEE.ENO, EMPLOYEE.ENAME,
+SELECT e.ENO, e.ENAME, e.dno
+FROM employee e
+JOIN department d ON e.dno = d.dno;
+--LEFR JOIN 왼쪽 테이블의 모든 행을 반환
+--모든 부서와 부서에 속한 직원을 가져오기
+--만약에 부서에 속한 직원이 없는 경우에는 부서 정보 포함하기
+SELECT d.dno, d.dname, e.eno, e.ename
+FROM department d
+LEFT JOIN employee e on d.dno = e.dno;
+--RIGHT JOIN 오른쪽 테이블의 모든 행 반환
+--모든 직원과 직원이 속한 부서 정보 가져오기
+--부서에 속하지 않은 경우도 직원 정보 포함
+select e.eno, e.ename, d.dno, d.dname
+from employee e
+right join department d on e.dno = d.dno;
+--FULL JOIN 양쪽 테이블의 모든 행을 반환
+select d.dno, d.dname, e.eno, e.ename
+from department d
+full join employee e on d.dno = e.dno;
 
+--실무에서 ORDER, GROUP, WHERE, JOIN 을 많이 쓰임
+
+
+--NVL(Null Value) : null 값을 다른 값으로 대체할 때 쓰인다
+SELECT ename, NVL(commission, 0) AS commission
+FROM employee;
+
+--NEXT DAY 다음 주어진 요일 날짜 찾기
+--SELECT ename, next_day(sysdate, 'FRIDAY') AS next_day FROM dual;
+
+--TRUNC : 날짜 또는 숫자의 소수부 제거
+SELECT ename, TRUNC(salary) AS TRUNC_SALARY FROM employee;
+
+--Floor, CEIL(무조건올림), ROUND : 숫자 반올림 및 내림
+SELECT ename, FLOOR(salary) AS FLOOR_Salary FROM employee;
+SELECT ename, CEIL(salary) AS CEIL_SALARY FROM employee;
+SELECT ename, ROUND(salary,2) AS round_salary FROM employee;
+
+--ABS(Absolute value) : 절대값 계산, -도 없앰
+SELECT ename, ABS(commission) AS ABS_COMMISSION FROM employee;
 
