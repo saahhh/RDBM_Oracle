@@ -1,4 +1,4 @@
-/*
+/* 
 --멤버의 이름, 이메일 주소 및 취미 검색
 SELECT M.MNAME, M.MEmail, H.Hobby
  --MEMBERINFO 아래에 있는 NAME 
