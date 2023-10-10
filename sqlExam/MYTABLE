@@ -1,6 +1,6 @@
 //SELECT * FROM employee WHERE ENO = 7698;
 //SELECT *(모두보기) FROM 테이블명 WHERE 컬럼명 = 찾고싶은내용;
-/*
+/* 
 모든 부서 정보 조회 : (DEPARTMENT)
     SELECT * FROM DEPARTMENT;
 모든 사원 정보 조회 : (EMPLOYEE)
