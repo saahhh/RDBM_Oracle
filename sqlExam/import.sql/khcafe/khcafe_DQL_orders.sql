@@ -8,3 +8,4 @@ FROM ORDERS o
 JOIN cafes c ON o.cafe_id = c.cafe_id
 JOIN menu m ON o.menu_id = m.menu_id
 WHERE o.order_id = 3;
+
