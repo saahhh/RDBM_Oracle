@@ -93,25 +93,25 @@ JOIN 내 다양한 JOIN문 설명 작성
 --부서와 직원 테이블을 JOIN하여 각 직원의 부서 정보를 가져옴
 --EMPLOYEE e
 --SELECT EMPLOYEE.ENO, EMPLOYEE.ENAME,
-SELECT e.ENO, e.ENAME, e.dno
-FROM employee e
-JOIN department d ON e.dno = d.dno;
+  SELECT e.ENO, e.ENAME, e.dno
+  FROM employee e
+  JOIN department d ON e.dno = d.dno;
 --LEFR JOIN 왼쪽 테이블의 모든 행을 반환
 --모든 부서와 부서에 속한 직원을 가져오기
 --만약에 부서에 속한 직원이 없는 경우에는 부서 정보 포함하기
-SELECT d.dno, d.dname, e.eno, e.ename
-FROM department d
-LEFT JOIN employee e on d.dno = e.dno;
+  SELECT d.dno, d.dname, e.eno, e.ename
+  FROM department d
+  LEFT JOIN employee e on d.dno = e.dno;
 --RIGHT JOIN 오른쪽 테이블의 모든 행 반환
 --모든 직원과 직원이 속한 부서 정보 가져오기
 --부서에 속하지 않은 경우도 직원 정보 포함
-select e.eno, e.ename, d.dno, d.dname
-from employee e
-right join department d on e.dno = d.dno;
+  select e.eno, e.ename, d.dno, d.dname
+  from employee e
+  right join department d on e.dno = d.dno;
 --FULL JOIN 양쪽 테이블의 모든 행을 반환
-select d.dno, d.dname, e.eno, e.ename
-from department d
-full join employee e on d.dno = e.dno;
+  select d.dno, d.dname, e.eno, e.ename
+  from department d
+  full join employee e on d.dno = e.dno;
 
 --실무에서 ORDER, GROUP, WHERE, JOIN 을 많이 쓰임
 
