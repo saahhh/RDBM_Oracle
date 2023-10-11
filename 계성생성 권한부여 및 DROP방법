@@ -60,3 +60,4 @@ select * from menu;
 exit
 sqlplus khcafe/kh1234 as sysdba;
 select * from menu;
+
