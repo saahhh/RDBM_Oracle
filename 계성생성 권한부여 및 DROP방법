@@ -25,3 +25,38 @@ SQL 오류: ORA-01950: 테이블스페이스 'USERS'에 대한 권한이 없습�
 
 grant connect, resource, dba to khaaa;
 권한이 부여되었습니다. (최고 관리자로 만든 것)
+
+sqlplus sys/oracle as sysdba
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+CREATE USER abc IDENTIFIED BY qwerty1234;
+conn abc/qwerty1234 as sysdba
+CREATE TABLE XYZ (
+	a INT PRIMARY KEY,
+	b INT
+);
+exit
+
+
+DROP방법
+(영구삭제니 사용 시 주의)
+sqlplus sys/oracle as sysdba
+drop user abc; --삭제안됨
+drop user abc CASCADE; --삭제안됨 
+(명령프롬프트는 스크립트이기 때문에 세션을 허용해줘야한다)
+
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+세션이 변경되었습니다.
+
+DROP USER abc;
+사용자가 삭제되었습니다.
+
+
+1. sqlplus sys/oracle as sysdba
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+conn khcafe/kh1234
+select * from menu;
+
+2. 
+exit
+sqlplus khcafe/kh1234 as sysdba;
+select * from menu;
