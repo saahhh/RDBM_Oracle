@@ -215,10 +215,6 @@ FETCH NEXT 10 ROWS ONLY : 그 다음 10개의 행을 가져온다.
 
 
 
-
-
-
-
 cf)
 DDL -> 계정만들고 계정에 권한을 주고 테이블을 만드는 용어들
 DML -> SELECT INSERT UPDATE DELETE
