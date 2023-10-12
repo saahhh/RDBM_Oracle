@@ -40,3 +40,69 @@ SELECT LPAD('5', 4, '0') AS left_padded_text FROM DUAL;
 
 -- RPAD 함수: 문자열을 오른쪽으로 패딩
 SELECT RPAD('5', 4, '0') AS right_padded_text FROM DUAL;
+
+
+
+
+
+/****** 함수 *******/
+
+--문자열에서 특정 문자 또는 문자열을 다른 문자열로 대체
+SELECT REPLACE (description, '풍미', '맛') FROM menu;
+
+SELECT product_name, REPLACE(product_name, '스마트', '똑똑한')
+FROM products;
+
+--CONCAT 두 문자열을 결합
+SELECT product_name || '가격 : $' || TO_CHAR(price, '999.99')
+FROM products;
+
+--SUBSTR (SubString) 문자열의 일부를 추출
+SELECT product_name, SUBSTR(product_name,1,3)
+FROM products;
+
+
+INSERT INTO products (product_id, product_name, category, price, stock_quantity)
+VALUES (5, '후드 집업', '의류', 20.99, 33);
+
+INSERT INTO products (product_id, product_name, category, price, stock_quantity)
+VALUES (6, '원 피 스', '의류', 10.99, 2);
+
+--공백 제거
+--TRIM, LTRIM, RTRIM 문자열에서 ' '안의 내용을 제거하는데 사용
+--TRIM : 양쪽 끝에 있는 ' '(=공백)을 제거
+--LTRIM : 문자열에서 왼쪽(시작부분)의 ' '(=공백)을 제거
+--RTRIM : 문자열 오른쪽(끝부분)의 ' '(=공백)을 제거
+SELECT product_name, TRIM(' '), LTRIM(product_name, '노트'),
+        RTRIM(product_name, '폰')
+FROM products;
+
+SELECT LTRIM(product_name)
+FROM products;
+
+SELECT LTRIM(category, '제품') FROM products; --LTRIM이라 아무런 변화 없음
+
+SELECT LTRIM(category, '전자') FROM products;
+--전자제품에서 제품을 제거하고 출력 SELECT와 RTRIM을 활용
+SELECT RTRIM(category, '제품') FROM products;
+
+--INSTR 문자열에서 특정 문자 위치 찾기
+SELECT product_name, INSTR(category, '품') --카테고리 전자제품에서 품의 위치
+FROM products;
+
+--LENGTHB, LENGTH : 바이트 문자열 길이, 문자열 단위로 문자열 길이
+SELECT product_name, LENGTHB(product_name), LENGTH(product_name)
+FROM products;
+
+--가장 긴 제품 이름 찾기
+SELECT product_name 
+FROM products 
+WHERE LENGTH(product_name) = (SELECT MAX(LENGTH(product_name)) FROM products);
+
+--제품 가격 반올림 (round)
+SELECT price, ROUND(price) FROM products;
+
+--제품 이름에 폰이 들어가는 제품 찾기 (INSTR활용)
+SELECT product_name 
+FROM products
+WHERE INSTR(product_name, '폰') >0;
