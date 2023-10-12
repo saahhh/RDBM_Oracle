@@ -106,3 +106,117 @@ SELECT price, ROUND(price) FROM products;
 SELECT product_name 
 FROM products
 WHERE INSTR(product_name, '폰') >0;
+
+
+
+
+
+--테이블이 없어도 볼 수 있음
+SELECT REPLACE ('Hello World!', 'Hello', 'Hi') FROM DUAL;
+
+SELECT 'Hello' || 'World!' AS textSum FROM DUAL;
+
+/**
+    Hello World FROM DUAL
+    --LOWER 문자열을 소문자로 변환
+    --UPPER 문자열을 대문자로 변환
+    --INITCAP 각 단어의 첫 글자를 대문자로 변환
+    --SUBSTR 문자열의 (1~5)일부분 추출
+    --TRIM '   Hello, World   ' 양쪽 공백 제거
+    --LTRIM '   Hello, World   ' 왼쪽 공백 제거
+    --RTRIM '   Hello, World   ' 오른쪽 공백 제거
+    --INSTR 문자열에서 World  문자열의 위치 찾기
+    --LENGTHB(여기서는 헬로우 월드! 활용)
+    --LENGTH 활용하기
+    --왼쪽에 문자열을 채우고 싶다 -> LPAD 활용
+    SELECT LPAD('5',4,'0') FROM DUAL;
+**/
+SELECT 'Hello World', LOWER('Hello World') FROM DUAL;
+SELECT 'Hello World', UPPER('Hello World') FROM DUAL;
+SELECT 'Hello World', INITCAP('Hello World') FROM DUAL;
+SELECT 'Hello World', SUBSTR('Hello World',1,5) FROM DUAL;
+SELECT 'Hello World', TRIM('   Hello, World   ') FROM DUAL;
+SELECT 'Hello World', LTRIM('   Hello, World   ') FROM DUAL;
+SELECT 'Hello World', RTRIM('   Hello, World   ') FROM DUAL;
+SELECT 'Hello World', LENGTHB('Hello World!') FROM DUAL;
+SELECT 'Hello World', LENGTH('Hello World!') FROM DUAL;
+SELECT LPAD('Hello World',20,'*') FROM DUAL;
+
+
+--서브쿼리를 활용해서 가장 비싼책의 정보
+SELECT * FROM book
+WHERE price =(SELECT MAX(price) FROM book);
+
+--윈도우 함수 RNAK 활용해서 각 장르별로 가장 비싼 두번째 책 가져오기
+SELECT * FROM (
+SELECT B.*,
+RANK() OVER(PARTITION BY genre ORDER BY price DESC) AS rnk
+FROM Book b
+)
+WHERE rnk = 1;
+
+--윈도우 함수 ROW_NUMBER 활용 해서 가장 비싼책 가져오기 장르별로
+SELECT * FROM (
+SELECT B.*,
+ROW_NUMBER() OVER(ORDER BY price DESC) AS rank
+FROM Book b
+)
+WHERE rank = 1;
+
+--ROW_NUMBER() OVER(~~~쿼리(=내용) 넣기);
+SELECT * FROM (
+        SELECT B.*,
+        ROW_NUMBER() OVER(PARTITION BY genre ORDER BY price DESC) AS rn
+        -- genre열을 기준으로 데이터를 분할하고
+        -- price열을 기준으로 내림차순으로 정렬하여 각 분할된 그룹 내에서 순위 할당
+        FROM BOOK b 
+)
+WHERE rn = 1;
+-- rn = 행 번호가 순서 번호를 나타내는 별칭 (rn = row number)
+
+--각 저자가 쓴 책 수가 2권 이상인 저자 찾기
+SELECT * FROM (
+    SELECT ROWNUM AS authors, b.*
+    FROM BOOK b
+    )
+WHERE authors >= 2;
+
+    
+--각 장르별로 판매된 가장 비싼 책을 가져오기
+
+
+--상위 5권의 책 가져오기
+SELECT * FROM (
+    SELECT ROWNUM AS rn, b.*
+    FROM book b
+    )
+WHERE rn <= 5;
+
+--각 장르별로 평균 가격과 최고 가격 가져오기
+SELECT * FROM (
+    SELECT genre, price, AVG(price) OVER(PARTITION BY genre) AS 
+    FROM book
+    )
+PIVOT (
+    MAX(price), AVG(avg_price)
+    FOR genre IN ('Fiction', 'Historlcal Fiction, 'Short Story'
+);
+
+
+--'Romance' 장르의 책 중에서 제일 비싼 책 찾기
+
+--가격대 별로 책의 판매량(CASE와 JOIN)
+
+--(price < 10  '상대적으로 구매할 수 있는 책' 10 AND price < 20 THEN '보통 책')
+
+--'소설' 장르의 책과 'Novel' 장르의 책 합치기 (UNION)
+
+--상위 5권의 책 가져오기 (ROWNUM)
+SELECT * FROM (
+    SELECT ROWNUM AS rn, b.*
+    FROM book b
+    )
+WHERE rn <= 5;
+
+--책의 출판 년도와 그 해에 출판된 책 수
+
