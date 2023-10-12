@@ -28,3 +28,13 @@ VALUES (4, '운동화', '신발', 79.99, 30);
 SELECT * FROM products
 WHERE product_name = '노트북';
 
+--주문 ID 주문 검색
+SELECT * FROM orders WHERE order_id = 7;
+
+--cafe_id가 6인 카페에서 주문 검색 (인덱스 활용)
+SELECT * FROM orders WHERE cafe_id = 6; 
+--10.00~15.00 가격 범위로 주문 검색 (인덱스 활용)
+SELECT * FROM orders WHERE total_price >= 10.00 AND total_price <= 15.00;
+--2023-10-11 14:00:00 ~ 2023-10-11 15:00:00 범위로 주문 검색 (인덱스 활용)
+SELECT * FROM orders WHERE order_date >= TIMESTAMP '2023-10-11 14:00:00'
+AND order_date < TIMESTAMP '2023-10-11 15:00:00';
