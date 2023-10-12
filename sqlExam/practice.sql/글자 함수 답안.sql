@@ -131,16 +131,59 @@ SELECT 'Hello' || 'World!' AS textSum FROM DUAL;
     --왼쪽에 문자열을 채우고 싶다 -> LPAD 활용
     SELECT LPAD('5',4,'0') FROM DUAL;
 **/
-SELECT 'Hello World', LOWER('Hello World') FROM DUAL;
+
+-- LOWER 함수: 문자열을 소문자로 변환
+SELECT 'Hello World', LOWER('Hello World') FROM DUAL; (내가한것)
+SELECT LOWER ('Hello World') AS lower_text FROM DUAL; (정답)
+
+-- UPPER 함수: 문자열을 대문자로 변환
 SELECT 'Hello World', UPPER('Hello World') FROM DUAL;
+SELECT UPPER ('Hello World') AS upper_text FROM DUAL;
+
+-- INITCAP 함수: 각 단어의 첫 글자를 대문자로 변환
 SELECT 'Hello World', INITCAP('Hello World') FROM DUAL;
+SELECT INITCAP('hello world') AS initcap_txt FROM DUAL;
+
+-- SUBSTR 함수: 문자열의 일부분 추출
 SELECT 'Hello World', SUBSTR('Hello World',1,5) FROM DUAL;
+SELECT SUBSTR ('Hello World', 1, 5) AS substring_text FROM DUAL;
+
+-- TRIM 함수: 문자열의 양쪽 공백 제거
 SELECT 'Hello World', TRIM('   Hello, World   ') FROM DUAL;
+SELECT TRIM (' ' FROM '   Hello, World!   ') AS trimmed_text FROM DUAL;
+
+-- LTRIM 함수: 문자열의 왼쪽 공백 제거
 SELECT 'Hello World', LTRIM('   Hello, World   ') FROM DUAL;
+SELECT LTRIM ('   Hello, World   ') AS lefr_trimmed_text FROM DUAL;
+
+-- RTRIM 함수: 문자열의 오른쪽 공백 제거
 SELECT 'Hello World', RTRIM('   Hello, World   ') FROM DUAL;
+SELECT RTRIM ('   Hello, World   ') AS right_trimmed_text FROM DUAL;
+
+-- INSTR 함수: 문자열에서 특정 문자열의 위치 찾기
+SELECT INSTR ('Hello, World!', 'World') AS position FROM DUAL;
+
+-- LENGTHB 함수: 문자열의 바이트 수 구하기
 SELECT 'Hello World', LENGTHB('Hello World!') FROM DUAL;
+SELECT LENGTHB('헬로우 월드!') AS byte_length FROM DUAL;
+
+-- LENGTH 함수: 문자열의 문자 수 구하기
 SELECT 'Hello World', LENGTH('Hello World!') FROM DUAL;
+SELECT LENGTH('Hello World!') AS char_length FROM DUAL;
+
+-- LPAD 함수: 문자열을 왼쪽으로 패딩
 SELECT LPAD('Hello World',20,'*') FROM DUAL;
+SELECT LPAD('5', 4, '0') AS left_padded_text FROM DUAL;
+
+-- RPAD 함수: 문자열을 오른쪽으로 패딩
+SELECT RPAD ('5', 4, '0') AS right_padded_text FROM DUAL;
+
+
+
+
+--서브쿼리를 활용해서 가장 비싼책의 정보
+SELECT * FROM book
+WHERE price =(SELECT MAX(price) FROM book);
 
 
 --서브쿼리를 활용해서 가장 비싼책의 정보
