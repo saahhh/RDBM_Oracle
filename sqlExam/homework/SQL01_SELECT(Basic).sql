@@ -1,4 +1,8 @@
 SELECT department_name, category FROM tb_department;
+--정답
+SELECT department_name "학과명", category 계열
+FROM tb_department;
+
 SELECT department_name || '의 정원은 ' || capacity ||'명 입니다.' "학과별 정원" FROM tb_department;
 
 --CONCAT 두 문자열을 결합
