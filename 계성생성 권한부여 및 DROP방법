@@ -26,6 +26,19 @@ SQL 오류: ORA-01950: 테이블스페이스 'USERS'에 대한 권한이 없습�
 grant connect, resource, dba to khaaa;
 권한이 부여되었습니다. (최고 관리자로 만든 것)
 
+/******
+sqlplus sys/oracle as sysdba 최고 권한으로 접속
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE; 
+c## 없이 계정 생성이 가능하다.
+12c이후에 유효한 방식으로 12c이후부터는 C##아이디로 지정해야 하는데
+C##이 명령어가 아닌 ID에 같이 포함되어 세션을 변경하기 위한 명령어로 보인다.
+CREATE USER manage IDENTIFIED BY msg1234; 유저생성
+GRANT CREATE SESSION TO manage; 계정에 접근할 수 있는 권한부여
+GRANT CREATE ANY TABLE TO manage; 테이블 생성할 수 있는 권한 부여
+grant connect, resource, dba to manage; 최고 관리자로 권한을 부여하는 것
+******/
+
+
 sqlplus sys/oracle as sysdba
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 CREATE USER abc IDENTIFIED BY qwerty1234;
