@@ -63,6 +63,30 @@ END;
 -- INSERT 문을 실행
 INSERT INTO book (book_id, title, author, publication_year, isbn, genre, description, price, publication_date, is_available)
 VALUES (22, '새로운 책', '새로운 저자', 2023, '978-1234567890', 'Fiction', '새로운 책 설명', 9.99, TO_DATE('2023-10-13', 'YYYY-MM-DD'), 'Y');
+
+
+
+CREATE OR REPLACE TRIGGER book_trigger
+AFTER INSERT OR UPDATE OR DELETE ON book
+FOR EACH ROW
+BEGIN
+    IF INSERTING THEN
+        -- INSERT가 실행될 때
+        INSERT INTO book_log (log_id, action_type, book_id, log_date)
+        VALUES (book_log_seq.NEXTVAL, 'INSERT', :NEW.book_id, SYSTIMESTAMP);
+    ELSIF UPDATING THEN
+        -- UPDATE가 실행될 때
+        INSERT INTO book_log (log_id, action_type, book_id, log_date)
+        VALUES (book_log_seq.NEXTVAL, 'UPDATE', :OLD.book_id, SYSTIMESTAMP);
+    ELSIF DELETING THEN
+        -- DELETE가 실행될 때
+        INSERT INTO book_log (log_id, action_type, book_id, log_date)
+        VALUES (book_log_seq.NEXTVAL, 'DELETE', :OLD.book_id, SYSTIMESTAMP);
+    END IF;
+END;
+/
+
+
 */
 
 
