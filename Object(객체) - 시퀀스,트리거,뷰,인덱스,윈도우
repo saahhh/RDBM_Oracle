@@ -41,6 +41,31 @@
   BEGIN 및 END : 블록을 정의, 블록 내에서 트리거나 수행할 작업을 정의할 수 있다
                   현재 행에 대한 작업을 수행하거나 다른 로직을 실행하는데 사용
 
+/*
+트리거 example :
+CREATE TABLE book_log (
+    log_id NUMBER PRIMARY KEY,
+    action_type VARCHAR2(10),
+    book_id NUMBER,
+    log_date TIMESTAMP
+);
+CREATE SEQUENCE book_log_seq START WITH 1 INCREMENT BY 1;
+-- 트리거 생성: 책이 INSERT 될 때마다 로그 테이블에 로그를 추가
+CREATE OR REPLACE TRIGGER book_insert_trigger
+AFTER INSERT ON book
+FOR EACH ROW
+BEGIN
+    INSERT INTO book_log (log_id, action_type, book_id, log_date)
+    VALUES (book_log_seq.NEXTVAL, 'INSERT', :NEW.book_id, SYSTIMESTAMP);
+    DBMS_OUTPUT.PUT_LINE('책이 추가되었습니다. 책 ID: ' || :NEW.book_id);
+END;
+/
+-- INSERT 문을 실행
+INSERT INTO book (book_id, title, author, publication_year, isbn, genre, description, price, publication_date, is_available)
+VALUES (22, '새로운 책', '새로운 저자', 2023, '978-1234567890', 'Fiction', '새로운 책 설명', 9.99, TO_DATE('2023-10-13', 'YYYY-MM-DD'), 'Y');
+*/
+
+
 
 
 
