@@ -13,17 +13,19 @@ Schema(스키마) :
 
 예제코드 : 
   1.테이블 정의
-  CREATE TABLE book (
-          BOOL_ID INT PRIMARY KEY,
-          TITLE VARCHAR2(255);
-  );
-  2.테이블 간의 관계 정의 : FOREGN KEY사용
+    CREATE TABLE book (
+            BOOK_ID INT PRIMARY KEY,
+            TITLE VARCHAR2(255);
+    );
+  2.테이블 간의 관계 정의 : 
+            FOREGN KEY사용
   3.뷰 정의
-  CREATE VIEW ORDER AS
-          SELECT o.* FROM ORDERS o
-          JOIN CUSTOM c ON o.CUSTOM_Id = c.CUSTOM_Id
+    CREATE VIEW ORDER AS
+            SELECT o.* FROM ORDERS o
+            JOIN CUSTOM c ON o.CUSTOM_Id = c.CUSTOM_Id;
   4.제약조건 정의
-          ALTER TABLE BOOK ADD 
-          CONSTRAINT pirce CHECK (price>0);
+            ALTER TABLE book ADD 
+            CONSTRAINT c_pirce CHECK (price>0);
   5.인덱스 정의
-          CREATE INDEX idx_title ON book(Title);
+            CREATE INDEX idx_title ON book(Title);
+
