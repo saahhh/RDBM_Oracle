@@ -111,7 +111,7 @@ WHERE INSTR(product_name, '폰') >0;
 
 
 
---테이블이 없어도 볼 수 있음
+--FROM DUAL = 단순한 계산, 산술연산, 함수결과 등 쿼리 결과를 손쉽게 볼 수 있는 임시테이블 (테이블이 없어도 결과를 볼 수 있음)
 SELECT REPLACE ('Hello World!', 'Hello', 'Hi') FROM DUAL;
 
 SELECT 'Hello' || 'World!' AS textSum FROM DUAL;
