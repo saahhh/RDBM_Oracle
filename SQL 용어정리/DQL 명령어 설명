@@ -96,7 +96,7 @@ JOIN 내 다양한 JOIN문 설명 작성
   SELECT e.ENO, e.ENAME, e.dno
   FROM employee e
   JOIN department d ON e.dno = d.dno;
---LEFR JOIN 왼쪽 테이블의 모든 행을 반환
+--LEFT JOIN 왼쪽 테이블의 모든 행을 반환
 --모든 부서와 부서에 속한 직원을 가져오기
 --만약에 부서에 속한 직원이 없는 경우에는 부서 정보 포함하기
   SELECT d.dno, d.dname, e.eno, e.ename
