@@ -7,3 +7,7 @@ C:\Users\user1\Desktop\RDBM_Oracle>git pull
 
 
 기존 파일에서 정리 후 git status, git add . , git commit -m , git push
+
+
+
+C:\Users\user1\Desktop\RDBM_Oracle>git cache clear
