@@ -82,7 +82,7 @@ JOIN 내 다양한 JOIN문 설명 작성
 
 --JOIN (=INNER JOIN) 
     일치하는 행만 반환
---LEFR JOIN
+--LEFT JOIN
     왼쪽 테이블의 모든 행을 반환
 --RIGHT JOIN
     오른쪽 테이블의 모든 행 반환
