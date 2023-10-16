@@ -80,3 +80,12 @@ LEFT JOIN tb_professor ON (professor_no = coach_professor_no)
 JOIN tb_department D ON (s.department_no = d.department_no)
 WHERE department_name = '서반아어학과'
 ORDER BY student_no;
+
+SELECT student_no 학번, student_name 이름, department_name "학과 이름", AVG(point) 평점
+FROM tb_student 
+JOIN tb_department USING(department_no)
+JOIN tb_grade USING(student_no)
+WHERE absence_yn = 'N'
+GROUP BY student_no, student_name, department_name 
+HAVING AVG(point)>=4.0
+ORDER BY 1;
