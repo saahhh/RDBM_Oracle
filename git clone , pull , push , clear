@@ -11,3 +11,7 @@ C:\Users\user1\Desktop\RDBM_Oracle>git pull
 
 
 C:\Users\user1\Desktop\RDBM_Oracle>git cache clear
+
+
+
+git config --global core.quotepath false
